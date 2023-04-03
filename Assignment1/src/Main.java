@@ -1,9 +1,8 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<User> users = new ArrayList<User>();
+        UserStore userStore = new UserStore();
 
         System.out.println("====================");
         System.out.println("회원등록");
@@ -33,7 +32,7 @@ public class Main {
 
             while(true){
                 User new_user = createUser();
-                users.add(new_user);
+                userStore.addUser(new_user);
 
                 System.out.println("------------------");
                 System.out.println(new_user.getName()+" 님, 가입을 환영합니다.");
