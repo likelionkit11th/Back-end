@@ -16,7 +16,7 @@ class userinfo{
     public void infoprint(int i){
         System.out.println("=======================");
         System.out.println(i+" 번째 등록자 님의 ID는 "+this.id+"이고 비밀번호는 "+this.password+"입니다");
-        System.out.println(i+" 번 등록자 님의 이름은 "+this.name+"이고 생일은 "+this.birth_date+"입니다");
+        System.out.println(i+" 번째 등록자 님의 이름은 "+this.name+"이고 생일은 "+this.birth_date+"입니다");
         System.out.println(i+" 번째 등록자 님의 이메일 주소는"+this.email+" 입니다");
         System.out.println("=======================");
     }
@@ -104,7 +104,7 @@ public class UserRegister_add {
             //생년월일(6자리)
             String birth_date="";
             while(true){
-                System.out.print("생생년월일(6자리): ");
+                System.out.print("생년월일(6자리): ");
                 birth_date = sc.nextLine();
                 if(birth_date.length()==6){
                     break;
