@@ -104,7 +104,7 @@ public class UserRegister_add {
             //생년월일(6자리)
             String birth_date="";
             while(true){
-                System.out.print("년월일(6자리): ");
+                System.out.print("생생년월일(6자리): ");
                 birth_date = sc.nextLine();
                 if(birth_date.length()==6){
                     break;
@@ -159,3 +159,4 @@ public class UserRegister_add {
         }
     }
 }
+
