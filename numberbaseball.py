@@ -39,7 +39,7 @@ def score(Alist, number):
 
     return strike_count, ball_count
 
-# 여기서부터 게임 시작!
+# play
 tries = 0
 
 while 1:
