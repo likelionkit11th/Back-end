@@ -2,7 +2,6 @@ package hello.hellospring.repository;
 import hello.hellospring.entity.Member;
 import jakarta.persistence.EntityManager;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
