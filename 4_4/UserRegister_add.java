@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import java.util.Scanner;
 class userinfo{
     String id;
     String password;
@@ -15,31 +16,31 @@ class userinfo{
     }
     public void infoprint(int i){
         System.out.println("=======================");
-        System.out.println(i+" ¹øÂ° µî·ÏÀÚ ´ÔÀÇ ID´Â "+this.id+"ÀÌ°í ºñ¹Ğ¹øÈ£´Â "+this.password+"ÀÔ´Ï´Ù");
-        System.out.println(i+" ¹øÂ° µî·ÏÀÚ ´ÔÀÇ ÀÌ¸§Àº "+this.name+"ÀÌ°í »ıÀÏÀº "+this.birth_date+"ÀÔ´Ï´Ù");
-        System.out.println(i+" ¹øÂ° µî·ÏÀÚ ´ÔÀÇ ÀÌ¸ŞÀÏ ÁÖ¼Ò´Â"+this.email+" ÀÔ´Ï´Ù");
+        System.out.println(i+" ë²ˆì§¸ ë“±ë¡ì ë‹˜ì˜ IDëŠ” "+this.id+"ì´ê³  ë¹„ë°€ë²ˆí˜¸ëŠ” "+this.password+"ì…ë‹ˆë‹¤");
+        System.out.println(i+" ë²ˆì§¸ ë“±ë¡ì ë‹˜ì˜ ì´ë¦„ì€ "+this.name+"ì´ê³  ìƒì¼ì€ "+this.birth_date+"ì…ë‹ˆë‹¤");
+        System.out.println(i+" ë²ˆì§¸ ë“±ë¡ì ë‹˜ì˜ ì´ë©”ì¼ ì£¼ì†ŒëŠ”"+this.email+" ì…ë‹ˆë‹¤");
         System.out.println("=======================");
     }
 }
 public class UserRegister_add {
     Scanner sc = new Scanner(System.in);
     boolean checking(){
-        System.out.println("È¸¿ø°¡ÀÔÀ» ÇÏ½Ã°Ú½À´Ï±î?\ny:ÁøÇà    N:Ãë¼Ò");
+        System.out.println("íšŒì›ê°€ì…ì„ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\ny:ì§„í–‰    N:ì·¨ì†Œ");
         System.out.print(">>");
         String register_input = sc.nextLine();
         if (register_input.equalsIgnoreCase("y")) {
             System.out.println("=======================");
-            System.out.println("È¸¿ø°¡ÀÔÀÌ ÁøÇàµË´Ï´Ù.");
+            System.out.println("íšŒì›ê°€ì…ì´ ì§„í–‰ë©ë‹ˆë‹¤.");
             System.out.println("=======================");
             return true;
 
         } else if (register_input.equalsIgnoreCase("n")) {
             System.out.println("=======================");
-            System.out.println("È¸¿ø°¡ÀÔÀÌ Á¾·áµË´Ï´Ù.");
+            System.out.println("íšŒì›ê°€ì…ì´ ì¢…ë£Œë©ë‹ˆë‹¤.");
             System.out.println("=======================");
             System.exit(0);
         } else {
-            System.out.println("ÀÔ·Â °ªÀ» È®ÀÎÇØÁÖ¼¼¿ä");
+            System.out.println("ì…ë ¥ ê°’ì„ í™•ì¸í•´ì£¼ì„¸ìš”");
             System.out.println("=======================");
         }
         return false;
@@ -49,29 +50,29 @@ public class UserRegister_add {
         UserRegister_add check = new UserRegister_add();
         userinfo[] info = new userinfo[20000];
         System.out.println("=======================");
-        System.out.println("È¸¿øµî·Ï");
+        System.out.println("íšŒì›ë“±ë¡");
         System.out.println("=======================");
         Scanner sc = new Scanner(System.in);
 
         boolean register = false;
         while (!register) {
-            System.out.println("È¸¿ø°¡ÀÔÀ» ÇÏ½Ã°Ú½À´Ï±î?\ny:ÁøÇà    N:Ãë¼Ò");
+            System.out.println("íšŒì›ê°€ì…ì„ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\ny:ì§„í–‰    N:ì·¨ì†Œ");
             System.out.print(">>");
             String register_input = sc.nextLine();
             if (register_input.equalsIgnoreCase("y")) {
                 register = true;
                 System.out.println("=======================");
-                System.out.println("È¸¿ø°¡ÀÔÀÌ ÁøÇàµË´Ï´Ù.");
+                System.out.println("íšŒì›ê°€ì…ì´ ì§„í–‰ë©ë‹ˆë‹¤.");
                 System.out.println("=======================");
 
             } else if (register_input.equalsIgnoreCase("n")) {
                 System.out.println("=======================");
-                System.out.println("È¸¿ø°¡ÀÔÀÌ Á¾·áµË´Ï´Ù.");
+                System.out.println("íšŒì›ê°€ì…ì´ ì¢…ë£Œë©ë‹ˆë‹¤.");
                 System.out.println("=======================");
                 System.exit(0);
 
             } else {
-                System.out.println("ÀÔ·Â °ªÀ» È®ÀÎÇØÁÖ¼¼¿ä");
+                System.out.println("ì…ë ¥ ê°’ì„ í™•ì¸í•´ì£¼ì„¸ìš”");
             }
         }
         int i=1;
@@ -85,50 +86,50 @@ public class UserRegister_add {
             while(true){
                 System.out.print("PW: ");
                 password=sc.nextLine();
-                System.out.print("PW È®ÀÎ: ");
+                System.out.print("PW í™•ì¸: ");
                 String password_confirm=sc.nextLine();
                 if (password.equals(password_confirm)){
                     break;
                 }else{
                     System.out.println("=======================");
-                    System.out.println("ÆĞ½º¿öµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
-                    System.out.println("ÆĞ½º¿öµå¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+                    System.out.println("íŒ¨ìŠ¤ì›Œë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+                    System.out.println("íŒ¨ìŠ¤ì›Œë“œë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
                     System.out.println("=======================");
                 }
             }
 
-            //ÀÌ¸§
-            System.out.print("¼º¸í: ");
+            //ì´ë¦„
+            System.out.print("ì„±ëª…: ");
             String name = sc.nextLine();
 
-            //»ı³â¿ùÀÏ(6ÀÚ¸®)
+            //ìƒë…„ì›”ì¼(6ìë¦¬)
             String birth_date="";
             while(true){
-                System.out.print("»ı³â¿ùÀÏ(6ÀÚ¸®): ");
+                System.out.print("ìƒë…„ì›”ì¼(6ìë¦¬): ");
                 birth_date = sc.nextLine();
                 if(birth_date.length()==6){
                     break;
                 }else{
                     System.out.println("=======================");
-                    System.out.println("»ı³â¿ùÀÏ ÀÚ¸´¼ö°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.");
-                    System.out.println("»ı³â¿ùÀÏÀ» ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+                    System.out.println("ìƒë…„ì›”ì¼ ìë¦¿ìˆ˜ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+                    System.out.println("ìƒë…„ì›”ì¼ì„ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
                     System.out.println("=======================");
                 }
             }
 
-            //ÀÌ¸ŞÀÏ
-            System.out.print("ÀÌ¸ŞÀÏ: ");
+            //ì´ë©”ì¼
+            System.out.print("ì´ë©”ì¼: ");
             String email = sc.nextLine();
 
             info[i] = new userinfo(username,password,name,birth_date,email);
             System.out.println("-----------------------");
-            System.out.println(info[i].name+"´Ô, °¡ÀÔÀ» È¯¿µÇÕ´Ï´Ù.");
-            System.out.println("ID´Â "+info[i].id+" ÀÔ´Ï´Ù");
+            System.out.println(info[i].name+"ë‹˜, ê°€ì…ì„ í™˜ì˜í•©ë‹ˆë‹¤.");
+            System.out.println("IDëŠ” "+info[i].id+" ì…ë‹ˆë‹¤");
             System.out.println("-----------------------");
             i++;
             register=false;
             while(!register){
-                System.out.println(i+" ¹øÂ° È¸¿ø°¡ÀÔÀ» »õ·Î ÇÏ½Ã°Ú½À´Ï±î?\ny:ÁøÇà    N:Ãë¼Ò     I:È¸¿ø°¡ÀÔ Á¤º¸ Ãâ·Â");
+                System.out.println(i+" ì§¸ì§¸ íšŒì›ê°€ì…ì„ ìƒˆë¡œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\ny:ì§„í–‰    N:ì·¨ì†Œ     I:íšŒì›ê°€ì… ì •ë³´ ì¶œë ¥");
                 System.out.print(">>");
                 String register_again = sc.nextLine();
                 if (register_again.equalsIgnoreCase("y")) {
@@ -140,22 +141,23 @@ public class UserRegister_add {
                     while (!register2) {
                         String cnt1;
                         int cnt2;
-                        System.out.print("Ãâ·ÂÇÏ±æ ¿øÇÏ´Â È¸¿ø°¡ÀÔ Á¤º¸ÀÇ ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+                        System.out.print("ì¶œë ¥í•˜ê¸¸ ì›í•˜ëŠ” íšŒì›ê°€ì… ì •ë³´ì˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
                         cnt1 = sc.nextLine();
                         cnt2 = Integer.parseInt(cnt1);
                         if (cnt2 < i) {
                             info[cnt2].infoprint(cnt2);
                             register2 = true;
                         } else {
-                            System.out.println("Àß¸øµÈ °ªÀ» ÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+                            System.out.println("ì˜ëª»ëœ ê°’ì„ ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
                             System.out.println("=======================");
                         }
                     }
                 }else{
-                    System.out.println("Àß¸øµÈ °ªÀ» ÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+                    System.out.println("ì˜ëª»ëœ ê°’ì„ ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
                     System.out.println("=======================");
                 }
             }
         }
     }
 }
+
