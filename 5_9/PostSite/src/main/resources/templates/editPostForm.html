@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>게시판 글 수정</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    textarea {
+      height: 200px; /* 초기 높이 */
+      resize: none; /* 조절 불가능하게 설정 */
+      overflow-y: auto; /* 내용이 넘칠 경우 스크롤이 생성되도록 설정 */
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+  <div class="container">
+    <a class="navbar-brand" href="/">글 수정</a>
+  </div>
+</nav>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form th:action="@{/{postId}/edit(postId=${postId})}" method="post">
+        <div class="form-group">
+          <label for="title">제목</label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요" required th:value="${post.getTitle()}">
+        </div>
+        <div class="form-group">
+          <label for="description">내용</label>
+          <textarea class="form-control" id="description" name="description" rows="8" placeholder="본문을 입력하세요" required th:text="${post.getDescription()}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">수정</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNVQ8b1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
