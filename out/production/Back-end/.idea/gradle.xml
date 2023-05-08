@@ -10,20 +10,10 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/Assignment1" />
       </GradleProjectSettings>
       <GradleProjectSettings>
-        <option name="delegatedBuild" value="false" />
-        <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/Assignment2" />
       </GradleProjectSettings>
-      <GradleProjectSettings>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/hello-spring" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$/hello-spring" />
-          </set>
-        </option>
-      </GradleProjectSettings>
     </option>
+    <option name="offlineMode" value="true" />
   </component>
 </project>
