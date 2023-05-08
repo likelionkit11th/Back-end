@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from posts.views import url_view, url_param, function_view
+from posts.views import url_view, url_param, function_view, class_view
 
 
 urlpatterns = [
@@ -25,4 +25,5 @@ urlpatterns = [
     path('url/', url_view),
     path('url/<str:username>/', url_param),
     path('fbv/', function_view),
+    path('cbv/', class_view.as_view()),
 ]
