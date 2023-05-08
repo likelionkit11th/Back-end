@@ -1,6 +1,5 @@
 package likelion.RegisterExample.repository;
 
-//import jakarta.persistence.EntityManager;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import likelion.RegisterExample.domain.Member;
