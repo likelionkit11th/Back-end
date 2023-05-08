@@ -1,7 +1,7 @@
 package com.seol.HW3SpringBoard.controller;
 
 import com.seol.HW3SpringBoard.domain.Post;
-import com.seol.HW3SpringBoard.domain.PostDTO;
+import com.seol.HW3SpringBoard.dto.PostDTO;
 import com.seol.HW3SpringBoard.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
