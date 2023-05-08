@@ -15,8 +15,9 @@ public class BoardService {
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
-    public void createPost(Post post) {
+    public Long createPost(Post post) {
         boardRepository.save(post);
+        return post.getId();
     }
     public Optional<Post> findPost(Long postId) {
         return boardRepository.findById(postId);
