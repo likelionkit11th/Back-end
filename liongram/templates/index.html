@@ -1,11 +1,10 @@
 <!-- @format -->
 
-{% extends 'base.html' %} {% load static %} {% block title %}인덱스{% endblock%} {% block content%}
+{% extends 'base.html' %} {% load static %} {% block title %}인덱스{% endblock%}
+{% block content%}
 <main>
   <div class="card-list">
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat expedita
-    eos dolorem nemo explicabo earum alias accusamus cum incidunt quos esse
-    quibusdam modi eligendi, autem non, iusto vel minus cupiditate!
+    {% include 'mixin/posts/post_card.html'%}
   </div>
 </main>
 {% endblock %}
