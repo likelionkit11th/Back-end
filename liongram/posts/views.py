@@ -7,10 +7,20 @@ from .models import Post
 
 
 def index(request):
-    return render(request, 'index.html')
+    post_list = Post.objects.all().order_by('-created_at')
+    context = {
+        'post_list' : post_list,
+    }
+    return render(request, 'index.html', context)
 
 def post_list_view(request):
-    return render(request, 'posts/post_list.html')
+    # post_list = Post.objects.all() # Post 모델 전체 데이터 조회
+    post_list = Post.objects.filter(writer = request.user) # Post.writer 가 현재 로그인한 사용자와 동일한 경우
+    context = {
+        'post_list' : post_list,
+    }
+    
+    return render(request, 'posts/post_list.html', context)
 
 @login_required
 def post_create_view(request):
