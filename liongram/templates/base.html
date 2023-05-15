@@ -1,13 +1,27 @@
+<!-- @format -->
+
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <title>{% block title %} {% endblock %} | 라이언그램</title>
   </head>
   <body>
+    <div>{% block content %} {% endblock %}</div>
     <div>
-        {% block content %}
-        {% endblock %}
-    </div>
+        <nav>
+          <ul class="bottom-menu-group">
+            <li><img src="{% static 'icons/home_outlined_black_36dp.svg' %}"></li>
+            <li><img src="{% static 'icons/search_outlined_black_36dp.svg' %}"></li>
+            <li><img src="{% static 'icons/add_box_outlined_black_36dp.svg' %}"></li>
+            <li><img src="{% static 'icons/favorite_outlined_black_36dp.svg' %}"></li>
+            <li><img src="{% static 'icons/account_circle_outlined_black_36dp.svg' %}"></li>
+          </ul>
+        </nav>
+      </div>
   </body>
 </html>
