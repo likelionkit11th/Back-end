@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+  table, th, td { border: 2px solid orange; }
+  table { border-collapse: collapse; }
+</style>
+<body>
+<h1>회원 가입 예제 입니다!</h1>
+<a href="/v1/new">회원 등록</a>
+<br><br><br>
+<div class="container">
+  <div>
+    <table>
+      <thead>
+      <tr>
+        <th>번호</th>
+        <th>이름</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td><a href="userDetail.html" th:href="@{v1/{userId}(userId=${user.getId()})}" th:text="${user.getUserName()}">제목</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div> <!-- /container -->
+</body>
+</html>
