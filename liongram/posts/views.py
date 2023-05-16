@@ -39,7 +39,23 @@ def post_create_view(request):
         return redirect('index')
 
 def post_update_view(request, id):
-    return render(request, 'posts/post_form.html')
+    post = Post.objects.get(id=id)
+    if request.method =='GET':
+        context = {
+            'post':post,
+        }
+        return render(request, 'posts/post_form.html',context)
+    elif request.method =='POST':
+        new_image = request.FILES.get('image')
+        content = request.POST.get('content')
+        
+        if new_image:
+            post.image.delete()
+            post.image = new_image
+            
+        post.content = content
+        post.save()
+        return redirect('posts:post-detail',post.id)
 
 def post_delete_view(request,id ):
     return render(request, 'posts/post_confirm_delete.html')

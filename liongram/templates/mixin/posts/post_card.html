@@ -5,6 +5,9 @@
       <a href="#">
         <span class="card__user-name"> {{post.writer}}</span>
       </a>
+      {% if request.user == post.writer %}
+        <a href="{% url 'posts:post-update' post.id%}">수정하기</a>
+      {% endif %}
     </div>
     <div class="card__body">
       <div>
