@@ -46,19 +46,19 @@
                     </div>
                 </div>
             </div>
-<!--            <nav aria-label="Page navigation example">-->
-<!--                <ul class="pagination justify-content-center">-->
-<!--                    <li class="page-item" th:classappend="${posts.first} ? disabled : ''">-->
-<!--                        <a class="page-link" th:href="@{/(pageNum=${posts.number - 1}, pageSize=${posts.size})}" tabindex="-1" th:if="${posts.hasPrevious()}">이전</a>-->
-<!--                    </li>-->
-<!--                    <li class="page-item" th:classappend="${posts.number == page} ? active : ''" th:each="page : ${#numbers.sequence(0, posts.totalPages - 1)}">-->
-<!--                        <a class="page-link" th:href="@{/(pageNum=${page}, pageSize=${posts.size})}" th:text="${page + 1}"></a>-->
-<!--                    </li>-->
-<!--                    <li class="page-item" th:classappend="${posts.last} ? disabled : ''">-->
-<!--                        <a class="page-link" th:href="@{/(pageNum=${posts.number + 1}, pageSize=${posts.size})}" th:if="${posts.hasNext()}">다음</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </nav>-->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${posts.first} ? disabled : ''">
+                        <a class="page-link" th:href="@{/(pageNum=${posts.number - 1}, pageSize=${posts.size})}" tabindex="-1" th:if="${posts.hasPrevious()}">이전</a>
+                    </li>
+                    <li class="page-item" th:classappend="${posts.number == page} ? active : ''" th:each="page : ${posts.totalPages<1 ? 0 : #numbers.sequence(0, posts.totalPages - 1)} ">
+                        <a class="page-link" th:href="@{/(pageNum=${page}, pageSize=${posts.size})}" th:text="${page + 1}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${posts.last} ? disabled : ''">
+                        <a class="page-link" th:href="@{/(pageNum=${posts.number + 1}, pageSize=${posts.size})}" th:if="${posts.hasNext()}">다음</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
