@@ -1,14 +1,18 @@
 package com.likelion.homework3.service;
 
+import com.likelion.homework3.controller.PostController;
 import com.likelion.homework3.domain.Post;
 import com.likelion.homework3.dto.PostDTO;
 import com.likelion.homework3.repository.PostRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -20,10 +24,13 @@ public class PostService {
 
 
     @Transactional(readOnly = true)
-    public List<Post> getPostList(){
-        List<Post> posts = postRepository.findAll();
+    public List<Post> getPostList(@NonNull Map<String, String> paramMap){
 
-        return posts;
+        if(paramMap.containsKey("title")){
+            return postRepository.findByTitleOrderByCreatedAtDesc(paramMap.get("title"));
+        }
+        return postRepository.findAllByOrderByCreatedAtDesc();
+
     }
 
     @Transactional(readOnly = true)
@@ -37,7 +44,9 @@ public class PostService {
     public void save(PostDTO dto){
         Post newPost = Post.builder()
                 .title(dto.getTitle())
-                .description(dto.getDescription()).build();
+                .description(dto.getDescription())
+                .createdAt(LocalDateTime.now())
+                .build();
 
         postRepository.save(newPost);
     }
