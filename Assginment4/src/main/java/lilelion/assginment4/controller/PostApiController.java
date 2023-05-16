@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.net.URI;
 import java.util.NoSuchElementException;
 
-@org.springframework.web.bind.annotation.RestController
+@RestController
 @RequiredArgsConstructor
 public class PostApiController {
     private static final Logger logger = LoggerFactory.getLogger(PostApiController.class);
@@ -24,6 +24,7 @@ public class PostApiController {
     @PostMapping("/form")
     public ResponseEntity<?> publishPost(PostDTO postDTO){
         Long postId = postService.publish(postDTO);
+        logger.info("Created new post with ID: {}", postId);
         return redirect(postId);
     }
 
@@ -31,6 +32,7 @@ public class PostApiController {
     @PostMapping(value = "/{postId}")
     public ResponseEntity<?> delete(@PathVariable("postId") Long postId){
         postService.deleteById(postId);
+        logger.info("Deleted post with ID: {}", postId);
         return redirect();
     }
 
@@ -38,11 +40,13 @@ public class PostApiController {
     @PostMapping(value = "/{postId}/edit")
     public ResponseEntity<?> edit(@PathVariable("postId") Long postId, PostDTO postDTO){
         postService.edit(postId, postDTO);
+        logger.info("Edited post with ID: {}", postId);
         return redirect();
     }
 
     @ExceptionHandler(value = {NoSuchElementException.class})
     public ModelAndView handleNoSuchElementException(NoSuchElementException e) {
+        logger.error("Error occurred: {}", e.getMessage());
         ModelAndView mav = new ModelAndView("alert");
         mav.addObject("message", "No such element: " + e.getMessage());
         mav.addObject("url", "/");
@@ -60,6 +64,4 @@ public class PostApiController {
         headers.setLocation(URI.create("/"));
         return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
-
-
 }
