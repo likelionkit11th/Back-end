@@ -45,7 +45,14 @@ def post_delete_view(request,id ):
     return render(request, 'posts/post_confirm_delete.html')
 
 def post_detail_view(request,id ):
-    return render(request, 'posts/post_detail.html')
+    try:
+        post = Post.objects.get(id=id)
+    except Post.DoesNotExist:
+            return redirect('index')
+    context={
+        'post' : post,
+    }
+    return render(request, 'posts/post_detail.html',context)
 
 
 def url_view(request):
