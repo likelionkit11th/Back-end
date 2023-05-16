@@ -4,6 +4,8 @@ import com.seoljy.HW41SpringBoard.domain.Post;
 import com.seoljy.HW41SpringBoard.dto.PostDTO;
 import com.seoljy.HW41SpringBoard.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -27,12 +29,12 @@ public class BoardService {
                 .orElseThrow(()-> new NoSuchElementException("id"+ postId + "에 해당하는 게시물이 없습니다."));
     }
 
-    public List<Post> searchPostsByTitle(String title) {
-        return boardRepository.findByTitleContaining(title);
+    public Page<Post> searchPostsByTitle(String title, Pageable pageable) {
+        return boardRepository.findByTitleContaining(title, pageable);
     }
 
-    public List<Post> findPosts() {
-        return boardRepository.findAllByOrderByCreatedAtDesc();
+    public Page<Post> findPosts(Pageable pageable) {
+        return boardRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
     @Transactional

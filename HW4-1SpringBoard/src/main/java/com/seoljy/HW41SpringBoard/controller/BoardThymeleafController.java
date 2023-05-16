@@ -3,7 +3,8 @@ package com.seoljy.HW41SpringBoard.controller;
 import com.seoljy.HW41SpringBoard.domain.Post;
 import com.seoljy.HW41SpringBoard.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 @Controller
@@ -27,16 +27,17 @@ public class BoardThymeleafController {
     @GetMapping("/")
     public String postList(
             @RequestParam(value="title", required = false, defaultValue = "") String title,
-            @RequestParam(value="pageNum", required = false, defaultValue = "1") String pageNum,
+            @RequestParam(value="pageNum", required = false, defaultValue = "0") String pageNum,
             @RequestParam(value="pageSize", required = false, defaultValue = "5") String pageSize,
             Model model
     ) {
+        Page posts;
+        PageRequest pageRequest = PageRequest.of(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
 
-        List<Post> posts;
         if (!title.equals("")) {
-            posts = boardService.searchPostsByTitle(title);
+            posts = boardService.searchPostsByTitle(title, pageRequest);
         } else {
-            posts = boardService.findPosts();
+            posts = boardService.findPosts(pageRequest);
         }
         model.addAttribute("posts", posts);
         return "postList";
