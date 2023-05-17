@@ -38,7 +38,7 @@
           <div class="card-body">
             <div class="d-flex justify-content-between">
               <h5 class="card-title"><a href="postDetail.html" th:href="@{/{postId}(postId=${post.getId()})}" class="post-link" th:text="${post.getTitle()}">Post Title</a></h5>
-              <p class="card-text text-right"><small class="text-muted" th:text="${#temporals.format(post.getCreatedAt(), 'yyyy-MM-dd HH:mm:ss')}">Post Date</small></p>
+              <p class="card-text text-right"><small class="text-muted" th:text="${#temporals.format(post.getCreateddate(), 'yyyy-MM-dd HH:mm:ss')}">Post Date</small></p>
             </div>
             <div class="card-text" th:if="${post.getDescription() != null}"
                  th:text="${#strings.replace(#strings.substring(post.getDescription(), 0, (post.getDescription().length() &lt;= 30 ? post.getDescription().length() : 30)), '<br>', '') }">

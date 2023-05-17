@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -34,23 +35,18 @@ import java.util.NoSuchElementException;
 @RequestMapping("/")
 public class PostController {
     private final PostService postService;
-/*
-    // 글 전체 출력
     @GetMapping()
-    public String postList(@RequestParam(value = "keyword",required = false,defaultValue = "") String keyword, Model model) {
-        if (keyword.isEmpty()){
-            model.addAttribute("posts",postService.findAllPosts());
-        }else
-            model.addAttribute("posts",postService.findbyTitlePost(keyword));
-        return "PostList";
-    }*/
-    //페이지 기능 구현
-    @GetMapping()
-    public String postList(@RequestParam(value = "keyword",required = false,defaultValue = "") String keyword, Model model,@PageableDefault(size=5) Pageable pageable ) {
+    public String postList(
+            @RequestParam(value = "keyword",required = false,defaultValue = "") String keyword,
+            @RequestParam(value = "pageNum",required = true, defaultValue = "0") int pagenum,
+            @RequestParam(value = "pageSize",required = true, defaultValue = "5") int pagesize,
+            Model model,Pageable pageable ) {
+        pageable= PageRequest.of(pagenum,pagesize);
         if (keyword.isEmpty()){
             model.addAttribute("posts",postService.findAllPosts(pageable));
-        }else
-            model.addAttribute("posts",postService.findbyTitlePost(keyword,pageable));
+        }else {
+            model.addAttribute("posts", postService.findbyTitlePost(keyword, pageable));
+        }
         return "PostList";
     }
         //글 작성 폼

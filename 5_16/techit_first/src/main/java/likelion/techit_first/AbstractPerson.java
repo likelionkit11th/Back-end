@@ -16,4 +16,11 @@ public abstract class AbstractPerson implements Person{
         System.out.println(String.format("Hi, my name is %s",this.name));
     }
 
+    @Override
+    public String toString() {
+        return "AbstractPerson{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }

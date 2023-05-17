@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 public class PostService {
     private  final PostRepository postRepository;
 
+    //새 post 만들기
     @Transactional
     public Long newPost(PostDTO postDTO){
         Post post = postDTO.toEntity();
@@ -34,19 +35,17 @@ public class PostService {
         return post.getId();
     }
 
-
+    // post 단건 조회
     public Post findbyIdPost(Long postId) {
         return postRepository
                 .findById(postId)
                 .orElseThrow(()-> new NoSuchElementException(postId + "번 글이 없습니다"));
     }
-//    public List<Post> findbySortList(List<Post> post){
-//        return post.stream()
-//                .sorted(Comparator.comparing(Post::getCreatedAt))
-//                .collect(Collectors.toList());
-//    }
 
+    // post title 검색
     public Page<Post> findbyTitlePost(String Title, Pageable pageable){
+        Sort sort = Sort.by(Sort.Direction.DESC,"createddate");
+        pageable = PageRequest.of(pageable.getPageNumber(),pageable.getPageSize(),sort);
         Page<Post> page = postRepository.findByTitleContaining(Title,pageable);
         if (page.isEmpty() == true) {
             throw new NoSuchElementException("제목 " + Title + "에 해당하는 게시글이 없습니다.");
@@ -54,30 +53,19 @@ public class PostService {
         return page;
     }
 
+
+    //post 전체 조회 (정렬됨)
     public Page<Post> findAllPosts(Pageable pageable) {
-        int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1);
-        pageable = PageRequest.of(page, 5);
-        return postRepository.findAllOrderBycreatedAtDesc(pageable);
+        return postRepository.findAllOrderBycreateddateDesc(pageable);
     }
 
-/*
-    public List<Post> findbyTitlePost(String Title) {
-        List<Post> list = postRepository.findByTitleContaining(Title);
-        if (list.isEmpty() == true) {
-            throw new NoSuchElementException("검색 결과가 없습니다");
-        }
-        return list;
-    }
-    public List<Post> findAllPosts() {
-            List<Post> list= postRepository.findAllOrderBycreatedAtDesc();
-            return list;
-    }
-*/
+    //post 삭제
     @Transactional
     public void deletePost(Long postId){
         postRepository.deleteById(postId);
     }
 
+    //post 수정
     @Transactional
     public void editPost(PostDTO postDTO ,Long postId) {
         postRepository

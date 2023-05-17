@@ -19,7 +19,7 @@
   <div class="card">
     <div class="card-header">
       <h3 th:text="${post.getTitle()}" class="card-title"></h3>
-      <span th:text="${post.getCreatedAt().format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd HH:mm:ss'))}" class="text-muted text-right"></span>
+      <span th:text="${post.getCreateddate().format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd HH:mm:ss'))}" class="text-muted text-right"></span>
     </div>
     <div class="card-body">
       <p th:utext="${post.getDescription()}" class="card-text"></p>

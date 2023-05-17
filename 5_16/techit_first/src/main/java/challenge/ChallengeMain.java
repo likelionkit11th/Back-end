@@ -17,9 +17,9 @@ public class ChallengeMain {
         everyone.add(studentLee);
         everyone.add(studentPark);
         everyone.add(lecturer);
-        printItem(everyone);
+        printItems(everyone);
     }
-    public static <T> void printItem(Iterable<T> iterable){
+    public static <T> void printItems(Iterable<T> iterable){
         Iterator<T> iterator = iterable.iterator();
         if(!iterator.hasNext()){
             System.out.println("No Elements");

@@ -18,30 +18,29 @@ import java.time.LocalDateTime;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long id;
-    @Column
+    @Column(name="title")
     private String title;
 
-    @Column
+    @Column(name="description")
     private String description;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @CreatedDate
-    @Column
-    private LocalDateTime createdAt;
+    @Column(name="createdat")
+    private LocalDateTime createddate;
 
     @Builder
     public Post(String title, String description) {
         this.title=title;
         this.description= description;
-        this.createdAt=createdAt.now();
+        this.createddate=createddate.now();
     }
 
     //편의 메서드
     public void update(String title, String description) {
         this.title=title;
         this.description = description;
-        this.createdAt=createdAt.now();
+        this.createddate=createddate.now();
     }
 
 }
