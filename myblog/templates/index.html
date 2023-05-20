@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} 홈 {% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg" style="height:10vh;">
+    <div class="container-fluid" style="width:70%; margin-left:30px;">
+      <a class="navbar-brand" href="/">테스트</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a style="font-weight:bold;"class="nav-link active" aria-current="page" href="#">홈</a>
+          </li>
+          <li class="nav-item">
+            <a style="font-weight:bold;" class="nav-link" href="{%url 'posts:post-create' %}">글쓰기</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-fluid " style="width:30%; margin-right:30px;">
+      <div style="justify-content:end;" class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li style="margin-right:15px;" class="nav-item">
+            <button style="border-radius:10px; font-weight:bold;"type="button" class="btn btn-dark">로그인</button>
+          </li>
+          <li class="nav-item">
+            <button style="border-radius:10px; font-weight:bold;"type="button" class="btn btn-dark">회원가입</button>
+          </li>
+        </ul>
+    </div>
+  </nav>
+  <div class="white-space">
+    <div class="profile">
+        <div class="profile-top">
+            <div class="profile-top-img">
+                <img src="{%static 'image/lion.png'%}">
+            </div>
+            <div class="profile-top-intro">Test</div>
+        </div>
+        <div class="profile-bottom-line"></div>
+    </div>
+  </div>
+  <div class="post-list-wrapper">
+    <div class="post-list">
+        <div class="post-card">
+            {% include 'mixin/posts/post_card.html'%}
+        </div>
+    </div>
+  </div>
+{% endblock %}
