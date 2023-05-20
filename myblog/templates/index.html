@@ -3,7 +3,7 @@
 {% block title %} 홈 {% endblock %}
 
 {% block content %}
-<nav class="navbar navbar-expand-lg" style="height:10vh;">
+<nav class="navbar navbar-expand-lg" style="height:7vh;">
     <div class="container-fluid" style="width:70%; margin-left:30px;">
       <a class="navbar-brand" href="/">테스트</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,15 +32,17 @@
         </ul>
     </div>
   </nav>
-  <div class="white-space">
-    <div class="profile">
-        <div class="profile-top">
-            <div class="profile-top-img">
-                <img src="{%static 'image/lion.png'%}">
-            </div>
-            <div class="profile-top-intro">Test</div>
-        </div>
-        <div class="profile-bottom-line"></div>
+  <div class="white-space-wrapper">
+    <div class="white-space">
+      <div class="profile">
+          <div class="profile-top">
+              <div class="profile-top-img">
+                  <img src="{%static 'image/lion.png'%}">
+              </div>
+              <div class="profile-top-intro">Test</div>
+          </div>
+          <div class="division-line"></div>
+      </div>
     </div>
   </div>
   <div class="post-list-wrapper">
