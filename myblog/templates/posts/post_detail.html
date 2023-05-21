@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{%block content%}
+
+
+{%include 'mixin/posts/post_navbar.html'%}
+{%include 'mixin/posts/modal.html'%}
+<div class="post-detail-wrapper">
+    <div class="post-detail-container">
+        <div class="post-detail-top">
+            <div class="post-detail-title">
+                <p>{{post.title}}</p>
+            </div>
+            <div class="post-detail-bar">
+                <div class="post-detail-bar-info">
+                    <p style="margin-right:15px; font-weight:bold;">Jae Seong</p>
+                    <p>{{post.created_at | date:"Y년 M d일"}}</p>
+                </div>
+                <div class="post-detail-bar-buttons">
+                    <form action="{%url 'posts:post-edit' post.id%}">
+                        <button style="margin-right:15px;" >
+                            수정
+                        </button>
+                    </form>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        삭제
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="post-detail-main">
+            <p>{{post.content}}</p>
+        </div>
+        <div class="post-detail-main-likes flex-center">
+            <div class="post-detail-like-con flex-center">
+                <a>
+                    <img class="post-detail-icons" src="{%static 'icons/favorite_FILL0_wght400_GRAD0_opsz48.svg'%}">
+                </a>
+            </div>
+            <div class="post-detail-like-count flex-center">
+                {%if post.like_count == 0 %}
+                    <p>공감</p>
+                {%else%}
+                    <p>{{post.like_count}}</p>
+                {%endif%}
+            </div>
+            <div class="post-detail-share flex-center">
+                <a>
+                    <img class="post-detail-icons" src="{%static 'icons/share_FILL0_wght400_GRAD0_opsz48.svg' %}">
+                </a>
+            </div>
+        </div>
+        <div class="post-detail-bottom">
+            {%include 'mixin/posts/profile.html' with usage="detail" %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

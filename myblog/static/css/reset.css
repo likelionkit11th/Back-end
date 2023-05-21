@@ -58,3 +58,6 @@ table {
 }
 
  a { color: inherit; }
+ p{
+	line-height:1.3;
+ }
