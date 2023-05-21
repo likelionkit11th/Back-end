@@ -109,7 +109,6 @@ span {
   margin-top: 100px;
   width: 50%;
   height: 100%;
-  /* background: red; */
 }
 
 .post-create-container textarea {
@@ -142,7 +141,6 @@ span {
 }
 .post-create-content {
   height: 100%;
-
   line-height: 1.5rem;
 }
 .post-create-bottom {
@@ -160,11 +158,9 @@ span {
   margin-top: 50px;
   display: flex;
   justify-content: center;
-  /* background: red; */
 }
 .post-detail-container {
   width: 50%;
-  /* background: gray; */
 }
 .post-detail-title {
   font-size: 45px;
@@ -199,11 +195,9 @@ span {
   font-size: 24px;
   margin-top: 6rem;
   margin-bottom: 3rem;
-  /* background-color: white; */
 }
 .post-detail-bottom {
   margin-top: 6rem;
-  /* background: blue; */
 }
 .post-detail-main-likes {
   width: 7rem;
