@@ -1,0 +1,14 @@
+<!-- @format -->
+
+{% extends 'base.html' %} {% block title %}글 입력 {% endblock %} {% block content %}
+<h1>Post 입력 화면</h1>
+<form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+  <div>
+    <!-- {{form.as_p}} -->
+    {%for field in form%}
+      <label for="{{field.id_for_label}}">{{field}}</label>
+    {%endfor%}
+  </div>
+  <input type="submit" />
+</form>
+{% endblock %}
