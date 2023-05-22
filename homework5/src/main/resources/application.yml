@@ -1,0 +1,27 @@
+
+#application.yml
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mutsa_order?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 9776
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        # show_sql: true
+        format_sql: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace
