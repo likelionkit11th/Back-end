@@ -13,8 +13,8 @@ public class CancelHistory {
 
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="order_id")
     private Order order;
-
 
     private Integer cancelPrice;
 

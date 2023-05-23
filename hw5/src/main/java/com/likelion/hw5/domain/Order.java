@@ -3,8 +3,11 @@ package com.likelion.hw5.domain;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name="orders")
 public class Order {
 
     @Id @GeneratedValue
@@ -17,4 +20,6 @@ public class Order {
 
     private LocalDateTime orderedAt;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems = new ArrayList<>();
 }

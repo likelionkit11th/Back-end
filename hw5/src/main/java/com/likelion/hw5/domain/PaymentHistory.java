@@ -13,6 +13,7 @@ public class PaymentHistory {
 
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="order_id")
     private Order order;
 
     @Enumerated(EnumType.STRING)
