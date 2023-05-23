@@ -1,6 +1,7 @@
 package com.likelion.hw5.service;
 
 import com.likelion.hw5.domain.Item;
+import com.likelion.hw5.domain.Order;
 import com.likelion.hw5.repository.ItemRepository;
 import com.likelion.hw5.repository.OrderRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +16,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -91,5 +93,31 @@ class OrderServiceTest {
                 .isInstanceOf(NoSuchElementException.class)
                 .hasMessage("해당 상품을 찾을 수 없습니다.");
         //then
+    }
+
+    @Test
+    @DisplayName("Order 객체 생성 및 테이블에 저장")
+    void t4() throws Exception {
+        //given
+
+        // 인자로 넘겨줄 orderItemDto 생성
+        List<OrderService.OrderItemDto> testOrderItemDtos = testItems.stream().map(item -> {
+            return OrderService.OrderItemDto
+                    .builder()
+                    .itemId(item.getId())
+                    .stockQuantity(5).build();
+        }).toList();
+
+        //when
+        // 저장
+        Long savedOrderId = orderService.order(testOrderItemDtos);
+
+        // 저장한 Order을 조회
+        Optional<Order> findOrder = orderRepository.findById(savedOrderId);
+
+        //then
+
+        assertThat(savedOrderId).isNotNull();
+        assertThat(findOrder.isPresent()).isTrue();
     }
 }

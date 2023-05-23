@@ -23,7 +23,7 @@ public class OrderService {
     private final ItemRepository itemRepository;
 
 
-    public void order(List<OrderItemDto> items){
+    public Long order(List<OrderItemDto> items){
         Order order = new Order();
 
         for(OrderItemDto orderItemDto : items){
@@ -37,10 +37,11 @@ public class OrderService {
                     .status(OrderItem.OrderItemStatus.ORDERED)
                     .build();
 
-
-
         }
 
+        orderRepository.save(order);
+
+        return order.getId();
     }
 
 
