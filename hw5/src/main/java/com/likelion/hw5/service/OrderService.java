@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +29,10 @@ public class OrderService {
     private final UserRepository userRepository;
     private final CancelHistoryRepository cancelHistoryRepository;
 
-
+    public List<Order> getOrderList(){
+        return  StreamSupport.stream(orderRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
+    }
     public Long order(List<OrderItemDto> items, Long userId){
         UserEntity findUser = userRepository.findById(userId).
                 orElseThrow(() -> new NoSuchElementException("해당 유저를 찾을 수 없습니다."));
