@@ -57,6 +57,18 @@ public class OrderService {
     }
 
 
+    public void cancel(Long orderId, List<Long> orderItemIdList, Long userId){
+
+        // validate parameters
+        Order findOrder = orderRepository.findById(orderId)
+                .orElseThrow(() -> new NoSuchElementException("잘못된 Order 정보입니다."));
+
+        UserEntity findUser = userRepository.findById(userId)
+                .orElseThrow(() -> new NoSuchElementException("잘못된 User 정보입니다."));
+
+
+    }
+
 
     @Getter
     @Builder

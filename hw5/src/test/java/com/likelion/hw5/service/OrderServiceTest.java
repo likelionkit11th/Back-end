@@ -2,6 +2,7 @@ package com.likelion.hw5.service;
 
 import com.likelion.hw5.domain.Item;
 import com.likelion.hw5.domain.Order;
+import com.likelion.hw5.domain.OrderItem;
 import com.likelion.hw5.domain.UserEntity;
 import com.likelion.hw5.repository.ItemRepository;
 import com.likelion.hw5.repository.OrderRepository;
@@ -171,5 +172,26 @@ class OrderServiceTest {
         assertThat(findOrder.getOrderItems().size()).isEqualTo(testOrderItemDtos.size());
         assertThat(findOrder.getUser()).isEqualTo(user);
         assertThat(findOrder.getOrderedAt()).isNotNull();
+    }
+
+    @Test
+    @DisplayName("Cancel시 잘못된 파라미터 : 찾을 수 없는 Order")
+    void t7() throws Exception {
+        //given
+        List<OrderService.OrderItemDto> testOrderItemDtos = testItems.stream().map(item -> {
+            return OrderService.OrderItemDto
+                    .builder()
+                    .itemId(item.getId())
+                    .stockQuantity(5).build();
+        }).toList();
+
+        Long savedOrderId = orderService.order(testOrderItemDtos, user.getId());
+        Order findOrder = orderRepository.findById(savedOrderId).get();
+        //when
+        List<Long> orderItemIdList = findOrder.getOrderItems().stream().map(OrderItem::getId).toList();
+
+        //then
+        assertThatThrownBy(()->orderService.cancel(1000L, orderItemIdList, user.getId()))
+                .isInstanceOf(NoSuchElementException.class);
     }
 }

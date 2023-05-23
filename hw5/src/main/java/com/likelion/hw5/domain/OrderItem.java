@@ -24,7 +24,7 @@ public class OrderItem {
     @JoinColumn(name="item_id")
     private Item item;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="cancel_history_id")
     private CancelHistory cancelHistory; // 취소 내역
 
