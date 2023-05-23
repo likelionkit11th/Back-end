@@ -33,10 +33,16 @@ public class Order {
     private List<OrderItem> orderItems = new ArrayList<>();
 
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<CancelHistory> cancelHistories = new ArrayList<>();
+
     public void addOrderItem(OrderItem orderItem){
         orderItems.add(orderItem);
     }
 
+    public void addCancelHistory(CancelHistory cancelHistory){
+        cancelHistories.add(cancelHistory);
+    }
     // 주문 금액을 Database에 저장하는게 아니라, OrderItem에서 계산하도록 설정 ... 데이터가 중복되기 때문
     public Integer getOrderPrice(){
         return orderItems.stream()

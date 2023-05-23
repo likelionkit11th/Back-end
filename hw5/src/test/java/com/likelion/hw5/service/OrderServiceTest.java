@@ -1,9 +1,7 @@
 package com.likelion.hw5.service;
 
-import com.likelion.hw5.domain.Item;
-import com.likelion.hw5.domain.Order;
-import com.likelion.hw5.domain.OrderItem;
-import com.likelion.hw5.domain.UserEntity;
+import com.likelion.hw5.domain.*;
+import com.likelion.hw5.repository.CancelHistoryRepository;
 import com.likelion.hw5.repository.ItemRepository;
 import com.likelion.hw5.repository.OrderRepository;
 import com.likelion.hw5.repository.UserRepository;
@@ -46,8 +44,8 @@ class OrderServiceTest {
     static class TestConfig {
         @Bean
         public OrderService orderService
-                (OrderRepository orderRepository, ItemRepository itemRepository, UserRepository userRepository) {
-            return new OrderService(orderRepository, itemRepository, userRepository);
+                (OrderRepository orderRepository, ItemRepository itemRepository, UserRepository userRepository, CancelHistoryRepository cancelHistoryRepository) {
+            return new OrderService(orderRepository, itemRepository, userRepository, cancelHistoryRepository);
         }
     }
 
@@ -185,6 +183,21 @@ class OrderServiceTest {
     }
 
 
+    @Test
+    @DisplayName("Cancel 정상 진행")
+    void t9() throws Exception {
+        //given
+        Order findOrder = saveAndGetOrder();
+        List<Long> orderItemIdList = findOrder.getOrderItems().stream().map(OrderItem::getId).toList();
+
+        //when
+        orderService.cancel(findOrder.getId(), orderItemIdList, user.getId());
+
+        //then
+        final CancelHistory cancelHistory = findOrder.getCancelHistories().get(0);
+        assertThat(cancelHistory.getId()).isNotNull();
+        assertThat(cancelHistory.getCanceledOrderItems().size()).isEqualTo(3);
+    }
 
 
 

@@ -33,6 +33,14 @@ public class OrderItem {
     @Enumerated(EnumType.STRING)
     private OrderItemStatus status;
 
+    public void setCancelHistory(CancelHistory cancelHistory) {
+        this.cancelHistory = cancelHistory;
+    }
+
+    public void setStatus(OrderItemStatus status) {
+        this.status = status;
+    }
+
     public static enum OrderItemStatus {
         ORDERED, CANCELED, COMPLETED
     }
