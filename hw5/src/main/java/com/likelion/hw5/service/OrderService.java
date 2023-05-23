@@ -27,7 +27,7 @@ public class OrderService {
         Order order = new Order();
 
         for(OrderItemDto orderItemDto : items){
-            Item findItem = itemRepository.findById(orderItemDto.getItemId()).orElseThrow(NoSuchElementException::new);
+            Item findItem = itemRepository.findById(orderItemDto.getItemId()).orElseThrow(()->new NoSuchElementException("해당 상품을 찾을 수 없습니다."));
 
             OrderItem orderItem = OrderItem.builder()
                     .item(findItem)

@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -77,6 +78,18 @@ class OrderServiceTest {
         assertThatCode(()->orderService.order(List.of(new OrderService.OrderItemDto(1L, 5))))
                 .doesNotThrowAnyException();
 
+        //then
+    }
+
+    @Test
+    @DisplayName("잘못된 주문 : 없는 Item Id를 인자로 넘겨주었을떄 예외 발생")
+    void t3() throws Exception {
+        //given
+
+        //when
+        assertThatThrownBy(()->orderService.order(List.of(new OrderService.OrderItemDto(10L, 5))))
+                .isInstanceOf(NoSuchElementException.class)
+                .hasMessage("해당 상품을 찾을 수 없습니다.");
         //then
     }
 }
