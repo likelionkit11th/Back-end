@@ -47,7 +47,7 @@ public class OrderService {
                     .status(OrderItem.OrderItemStatus.ORDERED)
                     .build();
 
-            order.getOrderItems().add(orderItem);
+            order.addOrderItem(orderItem);
 
         }
 

@@ -146,7 +146,7 @@ class OrderServiceTest {
     }
 
     @Test
-    @DisplayName("Order시 OrderItem이 함께 저장")
+    @DisplayName("Order시 Order 객체의 필드가 잘 매핑되었는지 확인")
     void t6() throws Exception {
         //given
         // 인자로 넘겨줄 orderItemDto 생성
@@ -169,6 +169,7 @@ class OrderServiceTest {
         Order findOrder = findOrderOptional.get();
         //then
         assertThat(findOrder.getOrderItems().size()).isEqualTo(testOrderItemDtos.size());
-
+        assertThat(findOrder.getUser()).isEqualTo(user);
+        assertThat(findOrder.getOrderedAt()).isNotNull();
     }
 }
