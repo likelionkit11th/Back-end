@@ -150,26 +150,10 @@ class OrderServiceTest {
     @DisplayName("Order시 Order 객체의 필드가 잘 매핑되었는지 확인")
     void t6() throws Exception {
         //given
-        // 인자로 넘겨줄 orderItemDto 생성
-        List<OrderService.OrderItemDto> testOrderItemDtos = testItems.stream().map(item -> {
-            return OrderService.OrderItemDto
-                    .builder()
-                    .itemId(item.getId())
-                    .stockQuantity(5).build();
-        }).toList();
+        Order findOrder = saveAndGetOrder();
 
-        //when
-        // 저장
-        Long savedOrderId = orderService.order(testOrderItemDtos, user.getId());
-
-        // 저장한 Order을 조회
-        Optional<Order> findOrderOptional = orderRepository.findById(savedOrderId);
-
-        if(findOrderOptional.isEmpty()) fail("Order 저장 오류");
-
-        Order findOrder = findOrderOptional.get();
         //then
-        assertThat(findOrder.getOrderItems().size()).isEqualTo(testOrderItemDtos.size());
+        assertThat(findOrder.getOrderItems().size()).isEqualTo(3);
         assertThat(findOrder.getUser()).isEqualTo(user);
         assertThat(findOrder.getOrderedAt()).isNotNull();
     }
@@ -178,6 +162,38 @@ class OrderServiceTest {
     @DisplayName("Cancel시 잘못된 파라미터 : 찾을 수 없는 Order")
     void t7() throws Exception {
         //given
+        Order findOrder = saveAndGetOrder();
+        //when
+        List<Long> orderItemIdList = findOrder.getOrderItems().stream().map(OrderItem::getId).toList();
+
+        //then
+        assertThatThrownBy(()->orderService.cancel(1000L, orderItemIdList, user.getId()))
+                .isInstanceOf(NoSuchElementException.class);
+    }
+
+    @Test
+    @DisplayName("Cancel시 잘못된 파라미터 : 찾을수 없는 User")
+    void t8() throws Exception {
+        //given
+        Order findOrder = saveAndGetOrder();
+        List<Long> orderItemIdList = findOrder.getOrderItems().stream().map(OrderItem::getId).toList();
+
+        //when
+        assertThatThrownBy(()->orderService.cancel(findOrder.getId(), orderItemIdList, 1000L))
+                .isInstanceOf(NoSuchElementException.class);
+        //then
+    }
+
+
+
+
+
+
+
+
+
+
+    private Order saveAndGetOrder() {
         List<OrderService.OrderItemDto> testOrderItemDtos = testItems.stream().map(item -> {
             return OrderService.OrderItemDto
                     .builder()
@@ -187,11 +203,7 @@ class OrderServiceTest {
 
         Long savedOrderId = orderService.order(testOrderItemDtos, user.getId());
         Order findOrder = orderRepository.findById(savedOrderId).get();
-        //when
-        List<Long> orderItemIdList = findOrder.getOrderItems().stream().map(OrderItem::getId).toList();
-
-        //then
-        assertThatThrownBy(()->orderService.cancel(1000L, orderItemIdList, user.getId()))
-                .isInstanceOf(NoSuchElementException.class);
+        return findOrder;
     }
+
 }
