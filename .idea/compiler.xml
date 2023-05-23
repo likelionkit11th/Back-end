@@ -8,7 +8,7 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.26/8f8cf0372abf564913e9796623aac4c8ea44025a/lombok-1.18.26.jar" />
         </processorPath>
-        <module name="Assginment4.main" />
+        <module name="Assignment5.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -16,6 +16,7 @@
       <module name="Assignment4" target="17" />
       <module name="Assignment4.main" target="17" />
       <module name="Assignment4.test" target="17" />
+      <module name="book-loan" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
