@@ -4,7 +4,7 @@ package com.likelion.hw5.domain;
 import jakarta.persistence.*;
 
 @Entity
-public class OrderItem {
+public class Item {
 
     @Id @GeneratedValue
     private Long id;
