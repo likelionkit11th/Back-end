@@ -4,8 +4,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     #/<IP>:<PORT>/<DB NAME>?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
     url: jdbc:mysql://localhost:3306/mutsa?serverTimezone=Asia/Seoul
-    username: root
-    password: 9776
+    username: 
+    password: 
 
 
   jpa:
