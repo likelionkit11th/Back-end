@@ -27,6 +27,15 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/Assignment2" />
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Assignment5" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Assignment5" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
         <option name="delegatedBuild" value="true" />
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
@@ -45,6 +54,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/PracticeSQL" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/book-loan" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/book-loan" />
           </set>
         </option>
       </GradleProjectSettings>
