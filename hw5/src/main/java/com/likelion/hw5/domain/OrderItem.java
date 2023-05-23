@@ -3,12 +3,14 @@ package com.likelion.hw5.domain;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class OrderItem {
 
     @Id @GeneratedValue
@@ -33,5 +35,10 @@ public class OrderItem {
 
     public static enum OrderItemStatus {
         ORDERED, CANCELED, COMPLETED
+    }
+
+
+    public Integer getOrderItemTotalPrice(){
+        return item.getUnitPrice() * stockQuantity;
     }
 }

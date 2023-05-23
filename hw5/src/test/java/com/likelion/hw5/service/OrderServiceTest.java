@@ -2,8 +2,10 @@ package com.likelion.hw5.service;
 
 import com.likelion.hw5.domain.Item;
 import com.likelion.hw5.domain.Order;
+import com.likelion.hw5.domain.UserEntity;
 import com.likelion.hw5.repository.ItemRepository;
 import com.likelion.hw5.repository.OrderRepository;
+import com.likelion.hw5.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,15 +32,21 @@ class OrderServiceTest {
     private ItemRepository itemRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private OrderService orderService;
 
+    // test용 data
     private List<Item> testItems;
+    private UserEntity user;
 
     @TestConfiguration
     static class TestConfig {
         @Bean
-        public OrderService orderService(OrderRepository orderRepository, ItemRepository itemRepository) {
-            return new OrderService(orderRepository, itemRepository);
+        public OrderService orderService
+                (OrderRepository orderRepository, ItemRepository itemRepository, UserRepository userRepository) {
+            return new OrderService(orderRepository, itemRepository, userRepository);
         }
     }
 
@@ -50,9 +58,13 @@ class OrderServiceTest {
                 new Item("물건2", 3000),
                 new Item("물건3", 4000));
 
+        user = new UserEntity("test_user");
         orderRepository.deleteAll();
         itemRepository.deleteAll();
+        userRepository.deleteAll();
+
         itemRepository.saveAll(testItems);
+        userRepository.save(user);
     }
 
     @Test
@@ -77,7 +89,7 @@ class OrderServiceTest {
         //given
 
         //when
-        assertThatCode(()->orderService.order(List.of(new OrderService.OrderItemDto(1L, 5))))
+        assertThatCode(()->orderService.order(List.of(new OrderService.OrderItemDto(testItems.get(0).getId(), 5)), user.getId()))
                 .doesNotThrowAnyException();
 
         //then
@@ -89,15 +101,27 @@ class OrderServiceTest {
         //given
 
         //when
-        assertThatThrownBy(()->orderService.order(List.of(new OrderService.OrderItemDto(10L, 5))))
+        assertThatThrownBy(()->orderService.order(List.of(new OrderService.OrderItemDto(10L, 5)), user.getId()))
                 .isInstanceOf(NoSuchElementException.class)
                 .hasMessage("해당 상품을 찾을 수 없습니다.");
         //then
     }
 
     @Test
-    @DisplayName("Order 객체 생성 및 테이블에 저장")
+    @DisplayName("잘못된 주문 : 없는 유저")
     void t4() throws Exception {
+        //given
+
+        //when
+        assertThatThrownBy(()->orderService.order(List.of(new OrderService.OrderItemDto(1L, 5)), 10L))
+                .isInstanceOf(NoSuchElementException.class)
+                .hasMessage("해당 유저를 찾을 수 없습니다.");
+        //then
+    }
+
+    @Test
+    @DisplayName("Order 객체 생성 및 테이블에 저장")
+    void t5() throws Exception {
         //given
 
         // 인자로 넘겨줄 orderItemDto 생성
@@ -110,7 +134,7 @@ class OrderServiceTest {
 
         //when
         // 저장
-        Long savedOrderId = orderService.order(testOrderItemDtos);
+        Long savedOrderId = orderService.order(testOrderItemDtos, user.getId());
 
         // 저장한 Order을 조회
         Optional<Order> findOrder = orderRepository.findById(savedOrderId);
@@ -119,5 +143,32 @@ class OrderServiceTest {
 
         assertThat(savedOrderId).isNotNull();
         assertThat(findOrder.isPresent()).isTrue();
+    }
+
+    @Test
+    @DisplayName("Order시 OrderItem이 함께 저장")
+    void t6() throws Exception {
+        //given
+        // 인자로 넘겨줄 orderItemDto 생성
+        List<OrderService.OrderItemDto> testOrderItemDtos = testItems.stream().map(item -> {
+            return OrderService.OrderItemDto
+                    .builder()
+                    .itemId(item.getId())
+                    .stockQuantity(5).build();
+        }).toList();
+
+        //when
+        // 저장
+        Long savedOrderId = orderService.order(testOrderItemDtos, user.getId());
+
+        // 저장한 Order을 조회
+        Optional<Order> findOrderOptional = orderRepository.findById(savedOrderId);
+
+        if(findOrderOptional.isEmpty()) fail("Order 저장 오류");
+
+        Order findOrder = findOrderOptional.get();
+        //then
+        assertThat(findOrder.getOrderItems().size()).isEqualTo(testOrderItemDtos.size());
+
     }
 }
