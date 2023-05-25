@@ -1,7 +1,5 @@
 {%load static%}
 
-
-
 <nav class="navbar navbar-expand-lg" style="height:7vh;">
     <div class="container-fluid" style="width:70%; margin-left:30px;">
       <a class="navbar-brand" href="/">테스트</a>
@@ -26,7 +24,9 @@
             <button style="border-radius:10px; font-weight:bold;"type="button" class="btn btn-dark">로그인</button>
           </li>
           <li class="nav-item">
-            <button style="border-radius:10px; font-weight:bold;"type="button" class="btn btn-dark">회원가입</button>
+            <form action="{%url 'accounts:signup'%}" method = 'GET'>
+              <button style="border-radius:10px; font-weight:bold;"type="submit" class="btn btn-dark">회원가입</button>
+            </form>
           </li>
         </ul>
     </div>
