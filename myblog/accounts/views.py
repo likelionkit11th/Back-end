@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+import json
 from django.http import JsonResponse
 from .forms import UserForm
 # Create your views here.
@@ -20,10 +21,11 @@ def signup_view(request):
             print(form)
             return redirect('index')
         else:
-            return redirect('accounts:signup')
-        
-    # form
-           
+            error_data = form.errors.as_json()
+            error_dict= json.loads(error_data)
+            # error_messages = {field: [error[0].message for error in error_list] for field, error_list in error_dict.items()}
+            print(error_dict)
+            return render(request, 'accounts/signup.html', {"error_messages" : error_dict})           
         
 
 

@@ -5,11 +5,13 @@
   justify-content: center;
   align-items: center;
 }
+.form-control{
+  height:50px;
+}
 .form-control:focus {
   border-color: black;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-
 
 .white-space {
   height: 350px;
@@ -68,8 +70,8 @@ span {
   display: flex;
   flex-direction: column;
   height: 200px;
-  margin-top:1.5rem;
-  margin-bottom:1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .profile {
   height: 50%;
@@ -181,19 +183,18 @@ span {
   justify-content: start;
 }
 .post-detail-bar-buttons {
-  
   width: 25%;
   display: flex;
   justify-content: end;
   margin-right: 15px;
 }
-.post-detail-bar-buttons button{
-  border:none;
+.post-detail-bar-buttons button {
+  border: none;
   background-color: white;
   color: gray;
 }
-.post-detail-bar-buttons button:hover{
-  color:black;
+.post-detail-bar-buttons button:hover {
+  color: black;
 }
 
 .post-detail-main {
@@ -210,34 +211,52 @@ span {
   border-radius: 3rem;
   border: 1px solid lightgray;
 }
-.post-detail-like-con, .post-detail-like-count, .post-detail-share {
-  width:2rem;
+.post-detail-like-con,
+.post-detail-like-count,
+.post-detail-share {
+  width: 2rem;
 }
 .post-detail-icons {
-  width:1.3rem;
-  height:1.3rem;
+  width: 1.3rem;
+  height: 1.3rem;
 }
-.post-detail-like-count p{
-  font-size:0.8rem;
+.post-detail-like-count p {
+  font-size: 0.8rem;
 }
-.modal-header,.modal-footer{
-  border-bottom:none;
-  border-top:none;
+.modal-header,
+.modal-footer {
+  border-bottom: none;
+  border-top: none;
 }
-.signup-con{
-  width:100%;
-  height:100vh;
+.signup-con {
+  width: 100%;
+  height: 100vh;
+}
+.my-3 {
+  margin-top: 2rem !important;
+  border: 1px solid lightgray;
+  border-radius: 2rem;
+  width: 550px;
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.signup-header{
+  height:150px;
+  font-size:2rem;
+  margin-top:2.5rem;
 }
-.my-3{
-  margin-top:2rem !important;
-  border:1px solid lightgray;
-  border-radius:2rem;
-  width:450px;
-  height:550px;
-}
-.signup-form{
-  width:75%;
+
+.signup-form {
+  width: 100%;
   height:100%;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.signup-input{
+  width:50%;
+  margin-bottom:2.5rem;
 }
