@@ -12,6 +12,7 @@ urlpatterns = [
     path('url/<str:username>/', url_param),
     path('fbv/', function_view),
     path('cbv/', class_view.as_view(), name='cbv'),
+    path('accounts/',include('accounts.urls',namespace='accounts')),
     path('posts/',include('posts.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
 

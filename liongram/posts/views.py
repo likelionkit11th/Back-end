@@ -22,15 +22,16 @@ def post_list_view(request):
     
     return render(request, 'posts/post_list.html', context)
 
-@login_required
+# @login_required
 def post_create_view(request):
     if request.method == 'GET':
         return render(request, 'posts/post_form.html')
     else:
+        print(request.POST)
+        print(request.POST.get('content'))
+
         image = request.FILES.get('image')
         content = request.POST.get('content')
-        print(image)
-        print(content)
         Post.objects.create(
             image=image,
             content=content,
