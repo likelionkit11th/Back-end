@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm  
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from users.models import User
 # from django.contrib.auth.forms import UserCreationForm
 
@@ -58,3 +58,13 @@ def login_view(request):
         # if user == None:
         #     pass
         # password = request.POST.get('password')
+def logout_view(request):
+    #데이터 유효성 검사
+    if request.user.is_authenticated:
+        #비즈니스 로직 처리 - 로그아웃
+        
+        logout(request)
+    #비즈니스 로직 처리
+    #응답
+
+    return redirect('index')
