@@ -1,0 +1,66 @@
+<div class="signup-con flex-center">
+    <div style="margin-top:2rem;"class="container my-3" >
+        <div class="signup-header flex-center">
+            
+            <h1 style="font-weight:bold;">
+                {%if usage == "signup" %}
+                    회원가입 후 이야기를 나눠보세요
+                {% else %}
+                    로그인 후 이야기를 나눠보세요
+                {% endif %}
+            </h1>
+        </div>
+        <form class="signup-form flex-center"method="POST" 
+        action=
+        "{%if usage == 'signup'%}
+            {%url 'accounts:signup'%}
+        {% else %}
+            {%url 'accounts:login'%}
+        {% endif %}">
+        
+            {% csrf_token %}
+            <div class="signup-input">
+                <label style="margin-bottom:10px; font-size:1.1rem;" for="username">아이디</label>
+                <input type="text" class="form-control" name="username" id="username"
+                    value="{{ form.username.value|default_if_none:'' }}">
+            </div>
+            {%if usage == "signup" %}
+            <div class="signup-input">
+                <label style="margin-bottom:10px; font-size:1.1rem;" for="password1">비밀번호</label>
+                <input type="password" class="form-control" name="password1" id="password1"
+                    value="{{ form.password1.value|default_if_none:'' }}">
+            </div>
+            {% else %}
+            <div class="signup-input">
+                <label style="margin-bottom:10px; font-size:1.1rem;" for="password">비밀번호</label>
+                <input type="password" class="form-control" name="password" id="password"
+                    value="{{ form.password.value|default_if_none:'' }}">
+            </div>
+            {% endif %}
+            {%if usage == "signup" %}
+                <div class="signup-input" style="margin-bottom:1.5rem;">
+                    <label style="margin-bottom:10px; font-size:1.1rem;" for="password2">비밀번호 확인</label>
+                    <input type="password" class="form-control" name="password2" id="password2"
+                        value="{{ form.password2.value|default_if_none:'' }}">
+                </div>
+            {% endif %}
+
+            {% if error_messages %}
+                <ul class="error-list">
+                    {% for field, errors in error_messages.items %}
+                        {% for error in errors %}
+                          <li>{{ error.message }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <button style="width:125px;height:50px;"type="submit" class="btn btn-dark">
+                {%if usage == "signup" %}
+                    회원가입
+                {% else %}
+                    로그인
+                {% endif %}
+            </button>
+        </form>
+    </div>
+</div>
