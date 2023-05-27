@@ -9,6 +9,7 @@ import com.likelion.hw5.repository.UserRepository;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +33,10 @@ public class OrderService {
     public List<Order> getOrderList(){
         return  StreamSupport.stream(orderRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
+    }
+
+    public List<Order> findOrderListByUsername(Pageable pageable, String username){
+        return orderRepository.findOrdersByUsername(username, pageable).toList();
     }
     public Long order(List<OrderItemDto> items, Long userId){
         User findUser = userRepository.findById(userId).
@@ -88,7 +93,7 @@ public class OrderService {
                 .canceledOrderItems(new ArrayList<>(cancelOrderItems))
                 .build();
 
-        //cancelHistoryRepository.save(cancelHistory);
+        cancelHistoryRepository.save(cancelHistory);
 
         cancelOrderItems.forEach(orderItem -> {
             orderItem.setCancelHistory(cancelHistory);
