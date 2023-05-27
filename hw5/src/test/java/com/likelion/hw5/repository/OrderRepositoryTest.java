@@ -25,6 +25,13 @@ public class OrderRepositoryTest {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
 
+    private Order order1;
+    private Order order2;
+    private Order order3;
+
+    private User user1;
+    private User user2;
+
     @Autowired
     public OrderRepositoryTest(OrderRepository orderRepository, UserRepository userRepository) {
         this.orderRepository = orderRepository;
@@ -35,11 +42,11 @@ public class OrderRepositoryTest {
     @BeforeEach
     void setUp() {
         // 테스트 데이터 생성
-        User user1 = new User("John Doe");
-        User user2 = new User("Jane Smith");
-        Order order1 = new Order(user1, LocalDateTime.now());
-        Order order2 = new Order(user2, LocalDateTime.now());
-        Order order3 = new Order(user1, LocalDateTime.now());
+        user1 = new User("John Doe");
+        user2 = new User("Jane Smith");
+        order1 = new Order(user1, LocalDateTime.now());
+        order2 = new Order(user2, LocalDateTime.now());
+        order3 = new Order(user1, LocalDateTime.now());
 
         userRepository.save(user1);
         userRepository.save(user2);
@@ -60,14 +67,14 @@ public class OrderRepositoryTest {
     @DisplayName("username으로 조회")
     public void testFindOrdersByUsername() {
 
-
-        // 주문 검색 테스트
+        // when
         String username = "John";
         Pageable pageable = PageRequest.of(0, 10);
         Page<Order> orders = orderRepository.findOrdersByUsername(username, pageable);
 
-        // 검증
+        // then
         assertThat(2).isEqualTo(orders.getTotalElements());
+        assertThat(orders.getContent()).containsExactly(order1, order3);
     }
 }
 
