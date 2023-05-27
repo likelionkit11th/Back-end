@@ -34,7 +34,7 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
     public Long order(List<OrderItemDto> items, Long userId){
-        UserEntity findUser = userRepository.findById(userId).
+        User findUser = userRepository.findById(userId).
                 orElseThrow(() -> new NoSuchElementException("해당 유저를 찾을 수 없습니다."));
 
 
@@ -71,7 +71,7 @@ public class OrderService {
         Order findOrder = orderRepository.findById(orderId)
                 .orElseThrow(() -> new NoSuchElementException("잘못된 Order 정보입니다."));
 
-        UserEntity findUser = userRepository.findById(userId)
+        User findUser = userRepository.findById(userId)
                 .orElseThrow(() -> new NoSuchElementException("잘못된 User 정보입니다."));
 
 
@@ -80,13 +80,15 @@ public class OrderService {
                 .filter(oi -> orderItemIdList.contains(oi.getId())).toList();
 
 
+
+        //Cancel history를 repository를 사용하지 않고 자동 저장할수는 없을까?
         CancelHistory cancelHistory = CancelHistory.builder()
                 .order(findOrder)
                 .canceledAt(LocalDateTime.now())
                 .canceledOrderItems(new ArrayList<>(cancelOrderItems))
                 .build();
 
-        cancelHistoryRepository.save(cancelHistory);
+        //cancelHistoryRepository.save(cancelHistory);
 
         cancelOrderItems.forEach(orderItem -> {
             orderItem.setCancelHistory(cancelHistory);

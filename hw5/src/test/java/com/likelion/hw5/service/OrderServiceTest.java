@@ -38,7 +38,7 @@ class OrderServiceTest {
 
     // test용 data
     private List<Item> testItems;
-    private UserEntity user;
+    private User user;
 
     @TestConfiguration
     static class TestConfig {
@@ -57,7 +57,7 @@ class OrderServiceTest {
                 new Item("물건2", 3000),
                 new Item("물건3", 4000));
 
-        user = new UserEntity("test_user");
+        user = new User("test_user");
         orderRepository.deleteAll();
         itemRepository.deleteAll();
         userRepository.deleteAll();

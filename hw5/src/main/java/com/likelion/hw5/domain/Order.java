@@ -13,10 +13,9 @@ import java.util.List;
 @Table(name="orders")
 @Getter
 @NoArgsConstructor
-
 public class Order {
     @Builder
-    public Order(UserEntity user, LocalDateTime orderedAt) {
+    public Order(User user, LocalDateTime orderedAt) {
         this.user = user;
         this.orderedAt = orderedAt;
     }
@@ -25,7 +24,7 @@ public class Order {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private UserEntity user;
+    private User user;
 
     private LocalDateTime orderedAt;
 
@@ -33,7 +32,7 @@ public class Order {
     private List<OrderItem> orderItems = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
     private List<CancelHistory> cancelHistories = new ArrayList<>();
 
     public void addOrderItem(OrderItem orderItem){
