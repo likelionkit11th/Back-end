@@ -237,7 +237,7 @@ span {
   border: 1px solid lightgray;
   border-radius: 2rem;
   width: 550px;
-  height: 45%;
+  height: 650px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -258,5 +258,23 @@ span {
 }
 .signup-input{
   width:50%;
-  margin-bottom:2.5rem;
+  margin-bottom:2rem;
+}
+.error-list{
+  width:50%;
+  font-size:0.8rem;
+  color:red;
+  margin-bottom:1rem;
+}
+.dropdown-button{
+  cursor:pointer;
+  fill:gray;
+}
+.dropdown-button:hover{
+  fill:black;
+}
+
+.dropdown-item:active{
+  color:black;
+  background:white;
 }

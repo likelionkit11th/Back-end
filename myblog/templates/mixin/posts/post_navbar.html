@@ -1,7 +1,7 @@
 {%load static%}
 
 <nav class="navbar navbar-expand-lg" style="height:7vh;">
-    <div class="container-fluid" style="width:70%; margin-left:30px;">
+    <div class="container-fluid" style="margin-top:1vh; width:70%; margin-left:30px;">
       <a class="navbar-brand" href="/">테스트</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,17 +17,36 @@
         </ul>
       </div>
     </div>
-    <div class="container-fluid " style="width:30%; margin-right:30px;">
+    <div class="container-fluid " style="margin-top:1vh; width:30%; margin-right:30px;">
       <div style="justify-content:end;" class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li style="margin-right:15px;" class="nav-item">
-            <button style="border-radius:10px; font-weight:bold;"type="button" class="btn btn-dark">로그인</button>
-          </li>
-          <li class="nav-item">
-            <form action="{%url 'accounts:signup'%}" method = 'GET'>
-              <button style="border-radius:10px; font-weight:bold;"type="submit" class="btn btn-dark">회원가입</button>
-            </form>
-          </li>
+          {% if not request.user.is_authenticated %}
+            <li style="margin-right:15px;" class="nav-item">
+              <form action="{%url 'accounts:login'%}" method = 'GET'>
+                <button style="border-radius:10px; font-weight:bold;"type="submit" class="btn btn-dark">로그인</button>
+              </form>
+            </li>
+            <li class="nav-item">
+              <form action="{%url 'accounts:signup'%}" method = 'GET'>
+                <button style="border-radius:10px; font-weight:bold;"type="submit" class="btn btn-dark">회원가입</button>
+              </form>
+            </li>
+          {% else %}
+            <li style="margin-right:15px; display:flex; align-items: center;" class="nav-item">
+                <p>{{user.username}}</p>
+            </li>
+            <li style="margin-right:4rem;" class="nav-item">
+                <div style="margin-top:1vh;" class="dropdown flex-center">
+                  <img class="dropdown-toggle"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" cursor:pointer;" width="50px;" height="50px;" src="{%static 'image/lion.png'%}">
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{%url 'accounts:logout' %}">로그아웃</a></li>
+                    <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
+                    <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                  </ul>
+                  <svg class="dropdown-button dropdown-toggle"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-360 280-559h400L480-360Z"/></svg>
+                </div>
+            </li>
+          {% endif %}
         </ul>
     </div>
   </nav>
