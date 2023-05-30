@@ -34,4 +34,7 @@ class PostDeleteModelSerializer(PostBaseModelSerializer):
     
     pass
 
-
+class CommentListModelSerializer(ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = '__all__'

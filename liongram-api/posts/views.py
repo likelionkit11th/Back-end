@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, action
 
 
 from rest_framework import generics,status
 
 from .models import Post, Comment
-from .serializers import PostBaseModelSerializer, PostListModelSerializer, PostCreateModelSerializer, PostRetrieveModelSerializer
+from .serializers import PostBaseModelSerializer, PostListModelSerializer, PostCreateModelSerializer, PostRetrieveModelSerializer, CommentListModelSerializer
 
 
 
@@ -51,6 +52,13 @@ class PostRetrieveUpdateView(generics.RetrieveAPIView, generics.UpdateAPIView, g
 class PostModelViewSet(ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostListModelSerializer
+    @action(detail=True, methods=['get'])
+    def get_comment_all(self, request, pk=None):
+        post = self.get_object()
+        comment_all = post.comment_set.all()
+        serializer = CommentListModelSerializer(comment_all, many=True)
+        return Response(serializer.data)
+        
 
 @api_view()
 def calculator(request):
