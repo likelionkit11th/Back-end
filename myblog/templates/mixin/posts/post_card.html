@@ -1,0 +1,26 @@
+<!-- @format -->
+
+{% load static %} {%for post in post_list %}
+<div class="post-container">
+  <div class="post-title">
+    <a href="{%url 'posts:post-detail' post.id%}">{{post.title}}</a>
+  </div>
+  <div class="post-content">
+    <p>{{post.content}}</p>
+  </div>
+  <div class="post-bottom">
+    <p>{{post.created_at | date:"Y년 M d일"}}</p>
+    <p>{{post.comment_count}}개의 댓글</p>
+    <div class="post-bottom-icon-align">
+      <img
+        width="20px;"
+        src="{% static 'icons/favorite_FILL0_wght400_GRAD0_opsz48.svg'%}"
+      />
+      <span style="font-size:13px; align-items: center">{{post.like_count}}</span>
+    </div>
+  </div>
+  <div class="division-wrapper flex-center">
+    <div class="division-line-card"></div>
+  </div>
+</div>
+{% endfor %}

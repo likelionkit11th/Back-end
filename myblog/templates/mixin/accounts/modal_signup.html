@@ -1,0 +1,42 @@
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="signupModalLabel">회원가입</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST" action="{% url 'accounts:signup' %}">
+        <div class="modal-body">
+            <div class="container my-3">                
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label style="margin-bottom:10px;"for="username">사용자 이름</label>
+
+                        <input type="text" class="form-control" name="username" id="username"
+                               value="{{ form.username.value|default_if_none:'' }}">
+                    </div>
+                    <div class="mb-3">
+                        <label style="margin-bottom:10px;" for="password1">비밀번호</label>
+                        
+                        <input type="password" class="form-control" name="password1" id="password1"
+                               value="{{ form.password1.value|default_if_none:'' }}">
+                    </div>
+                    <div class="mb-3">
+                        <label style="margin-bottom:10px;" for="password2">비밀번호 확인</label>
+                        
+                        <input type="password" class="form-control" name="password2" id="password2"
+                               value="{{ form.password2.value|default_if_none:'' }}">
+                        {%if form.errors%}
+                            <span>{{form.errors}}</span>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="modal-footer">            
+                <button type="submit" class="btn btn-dark">생성하기</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

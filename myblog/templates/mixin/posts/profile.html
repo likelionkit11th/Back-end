@@ -1,0 +1,39 @@
+{%load static%}
+
+{%if usage == "detail" %}
+
+<div class="profile" style="width:100%;">
+    <div class="profile-top" style="width:100%;">
+        <div class="profile-top-img">
+            <img src="{%static 'image/lion.png'%}">
+        </div>
+        <div class="profile-top-intro">
+            {% if request.user.is_authenticated %}
+                {{user.username}}
+            {% else %}
+                로그인 해주세요
+            {% endif %}
+        </div>
+    </div>
+    <div class="division-line" style="margin-top:2rem; margin-bottom:1.5rem; width:100%;"></div>
+</div>
+
+{% else %}
+
+<div class="profile">
+    <div class="profile-top">
+        <div class="profile-top-img">
+            <img src="{%static 'image/lion.png'%}">
+        </div>
+        <div class="profile-top-intro">
+            {% if request.user.is_authenticated %}
+                {{user.username}}
+            {% else %}
+                로그인 해주세요
+            {% endif %}
+        </div>
+    </div>
+    <div class="division-line"></div>
+</div>
+
+{% endif %}

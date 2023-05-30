@@ -1,0 +1,280 @@
+/** @format */
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-control{
+  height:50px;
+}
+.form-control:focus {
+  border-color: black;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.white-space {
+  height: 350px;
+}
+.division-wrapper {
+  width: 100%;
+  height: 50px;
+}
+.division-line {
+  width: 75%;
+  height: 1px;
+  background-color: lightgray;
+}
+.division-line-card {
+  width: 100%;
+  height: 1px;
+  background-color: lightgray;
+}
+.post-title {
+  height: 50px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.post-content p {
+  margin: 5px 0px;
+}
+.post-bottom {
+  font-size: 18px;
+  margin: 20px 0px 10px 0px;
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+}
+.post-bottom p,
+span {
+  font-size: 13px;
+}
+.post-bottom-icon-align {
+  width: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.post-list-wrapper {
+  width: 100%;
+}
+.post-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 75%;
+}
+.post-container {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.profile {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 75%;
+}
+.profile-top {
+  width: 75%;
+  display: flex;
+  justify-content: start;
+}
+.profile-top-img {
+  width: 160px;
+}
+.profile-top-intro {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  width: 70%;
+}
+.profile-top-img img {
+  width: 150px;
+  height: 150px;
+}
+
+.post-create-container {
+  width: 100%;
+  height: 100%;
+}
+.post-create-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.post-create-top {
+  margin-top: 100px;
+  width: 50%;
+  height: 100%;
+}
+
+.post-create-container textarea {
+  resize: none;
+  outline: none;
+  width: 100%;
+  border: none;
+  overflow: hidden;
+}
+.post-create-title {
+  height: 50px;
+  font-weight: bold;
+  font-size: 24px;
+  display: flex;
+  max-height: 1000px;
+  appearance: none;
+}
+.post-create-title::placeholder {
+  font-size: 24px;
+}
+.hrline {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(211, 211, 211, 0.5);
+  margin-bottom: 30px;
+}
+.post-create-content-con {
+  height: 600px;
+  background: red;
+}
+.post-create-content {
+  height: 100%;
+  line-height: 1.5rem;
+}
+.post-create-bottom {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(211, 211, 211, 0.5);
+  height: 75px;
+}
+.post-detail-wrapper {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+.post-detail-container {
+  width: 50%;
+}
+.post-detail-title {
+  font-size: 45px;
+  font-weight: bold;
+  height: 80px;
+}
+.post-detail-bar {
+  display: flex;
+}
+.post-detail-bar-info {
+  width: 75%;
+  display: flex;
+  justify-content: start;
+}
+.post-detail-bar-buttons {
+  width: 25%;
+  display: flex;
+  justify-content: end;
+  margin-right: 15px;
+}
+.post-detail-bar-buttons button {
+  border: none;
+  background-color: white;
+  color: gray;
+}
+.post-detail-bar-buttons button:hover {
+  color: black;
+}
+
+.post-detail-main {
+  font-size: 24px;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+}
+.post-detail-bottom {
+  margin-top: 6rem;
+}
+.post-detail-main-likes {
+  width: 7rem;
+  height: 3rem;
+  border-radius: 3rem;
+  border: 1px solid lightgray;
+}
+.post-detail-like-con,
+.post-detail-like-count,
+.post-detail-share {
+  width: 2rem;
+}
+.post-detail-icons {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.post-detail-like-count p {
+  font-size: 0.8rem;
+}
+.modal-header,
+.modal-footer {
+  border-bottom: none;
+  border-top: none;
+}
+.signup-con {
+  width: 100%;
+  height: 100vh;
+}
+.my-3 {
+  margin-top: 2rem !important;
+  border: 1px solid lightgray;
+  border-radius: 2rem;
+  width: 550px;
+  height: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-header{
+  height:150px;
+  font-size:2rem;
+  margin-top:2.5rem;
+}
+
+.signup-form {
+  width: 100%;
+  height:100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.signup-input{
+  width:50%;
+  margin-bottom:2rem;
+}
+.error-list{
+  width:50%;
+  font-size:0.8rem;
+  color:red;
+  margin-bottom:1rem;
+}
+.dropdown-button{
+  cursor:pointer;
+  fill:gray;
+}
+.dropdown-button:hover{
+  fill:black;
+}
+
+.dropdown-item:active{
+  color:black;
+  background:white;
+}
