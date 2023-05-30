@@ -9,6 +9,7 @@ import com.likelion.hw5.repository.UserRepository;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,8 +34,12 @@ public class OrderService {
         return  StreamSupport.stream(orderRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
     }
+
+    public List<Order> findOrderListByUsername(Pageable pageable, String username){
+        return orderRepository.findOrdersByUsername(username, pageable).toList();
+    }
     public Long order(List<OrderItemDto> items, Long userId){
-        UserEntity findUser = userRepository.findById(userId).
+        User findUser = userRepository.findById(userId).
                 orElseThrow(() -> new NoSuchElementException("해당 유저를 찾을 수 없습니다."));
 
 
@@ -71,7 +76,7 @@ public class OrderService {
         Order findOrder = orderRepository.findById(orderId)
                 .orElseThrow(() -> new NoSuchElementException("잘못된 Order 정보입니다."));
 
-        UserEntity findUser = userRepository.findById(userId)
+        User findUser = userRepository.findById(userId)
                 .orElseThrow(() -> new NoSuchElementException("잘못된 User 정보입니다."));
 
 
@@ -80,6 +85,8 @@ public class OrderService {
                 .filter(oi -> orderItemIdList.contains(oi.getId())).toList();
 
 
+
+        //Cancel history를 repository를 사용하지 않고 자동 저장할수는 없을까?
         CancelHistory cancelHistory = CancelHistory.builder()
                 .order(findOrder)
                 .canceledAt(LocalDateTime.now())

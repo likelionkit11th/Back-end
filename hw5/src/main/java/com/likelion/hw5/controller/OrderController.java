@@ -6,6 +6,9 @@ import com.likelion.hw5.service.OrderService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +24,14 @@ public class OrderController {
     @GetMapping("/list")
     public List<Order> getOrders(){
         return orderService.getOrderList();
+    }
+
+    @GetMapping("/list/search")
+    public List<Order> search(
+            @RequestParam(required = false, defaultValue = "*")String username,
+            @PageableDefault(sort = {"orderedAt"},direction = Sort.Direction.DESC) Pageable pageable
+    ){
+        return orderService.findOrderListByUsername(pageable, username);
     }
 
     @PostMapping("/")
